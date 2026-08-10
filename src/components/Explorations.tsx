@@ -22,67 +22,86 @@ export const Explorations: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7 }}
-        className="flex flex-col space-y-12 sm:space-y-16"
+        className="flex flex-col space-y-10 sm:space-y-14"
       >
-        {/* Section Heading */}
-        <div className="flex flex-col space-y-3">
+        {/* Section Header with Description */}
+        <div className="flex flex-col space-y-4">
           <div className="glass-shimmer inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/25 bg-surface/85 backdrop-blur-2xl text-xs font-body uppercase tracking-[0.2em] text-[#89AACC] font-bold shadow-xl w-fit">
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 text-[#89AACC]" />
             <span>06 / EXPERIMENTAL LAB</span>
           </div>
           <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
             Visual <span className="text-[#89AACC]">playground</span>
           </h2>
+          <p className="text-text-primary/90 text-sm sm:text-xl lg:text-2xl font-body max-w-3xl leading-relaxed">
+            Exploring concepts across artificial intelligence, machine learning model explainability, high-throughput backend APIs, and modern creative web technologies.
+          </p>
         </div>
 
-        {/* Explorations Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {portfolio.explorations.map((exp, idx) => {
-            const IconComponent = explorationIcons[exp.id] || Sparkles;
-            return (
-              <motion.div
-                key={exp.id}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                onClick={() => setActiveCard(exp)}
-                className="glass-card glass-shimmer group relative p-6 sm:p-8 rounded-3xl cursor-pointer shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-6"
-              >
-                {/* Top Badge */}
-                <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full bg-stroke/85 border border-white/15 text-[11px] font-body uppercase tracking-wider text-[#89AACC] font-bold">
-                    {exp.category}
-                  </span>
-                  <div className="w-10 h-10 rounded-xl bg-stroke/70 flex items-center justify-center text-[#89AACC]">
-                    <IconComponent className="w-5 h-5" />
+        {/* SINGLE GLASSMORPHIC CONTAINER BOX */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="glass-card glass-shimmer relative w-full rounded-3xl p-6 sm:p-10 md:p-12 border border-white/30 backdrop-blur-3xl shadow-2xl flex flex-col space-y-8 overflow-hidden"
+        >
+          {/* Header Bar inside Single Box */}
+          <div className="flex items-center justify-between pb-4 border-b border-white/15 flex-wrap gap-3">
+            <div className="flex items-center space-x-3">
+              <div className="w-9 sm:w-11 h-9 sm:h-11 rounded-2xl accent-gradient p-[2px]">
+                <div className="w-full h-full bg-bg rounded-2xl flex items-center justify-center text-text-primary">
+                  <Brain className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
+                </div>
+              </div>
+              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
+                Neural, Backend & Cyber Concepts
+              </h3>
+            </div>
+
+            <span className="px-3.5 py-1.5 rounded-full bg-stroke/90 border border-white/15 text-xs font-body font-bold text-[#89AACC] uppercase tracking-wider">
+              {portfolio.explorations.length} Interactive Modules
+            </span>
+          </div>
+
+          {/* Grid of Small Concept Cards (Title & Icon Only) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-6 pt-2">
+            {portfolio.explorations.map((exp, idx) => {
+              const IconComponent = explorationIcons[exp.id] || Sparkles;
+              return (
+                <motion.div
+                  key={exp.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: idx * 0.06 }}
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => setActiveCard(exp)}
+                  className="glass-card glass-shimmer group relative p-4 sm:p-7 rounded-2xl cursor-pointer shadow-xl border border-white/20 hover:border-[#89AACC] flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 transition-all"
+                >
+                  {/* Icon */}
+                  <div className="w-11 sm:w-16 h-11 sm:h-16 rounded-2xl bg-stroke/80 flex items-center justify-center text-[#89AACC] group-hover:bg-[#4E85BF] group-hover:text-bg transition-colors shadow-md">
+                    <IconComponent className="w-5 sm:w-8 h-5 sm:h-8" />
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="space-y-2">
-                  <h3 className="text-2xl sm:text-3xl font-display italic text-text-primary group-hover:text-white transition-colors">
+                  {/* Title Only */}
+                  <h4 className="text-xs sm:text-lg font-display italic text-text-primary group-hover:text-white transition-colors leading-snug">
                     {exp.title}
-                  </h3>
-                  <p className="text-xs sm:text-base text-text-primary/85 font-body leading-relaxed">
-                    {exp.description}
-                  </p>
-                </div>
+                  </h4>
 
-                {/* Action Indicator */}
-                <div className="flex items-center justify-between pt-3 border-t border-white/15">
-                  <span className="text-xs font-body uppercase tracking-widest text-[#89AACC] font-bold">
-                    Explore
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-[#89AACC]" />
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                  {/* Click Prompt Indicator */}
+                  <div className="flex items-center gap-1 text-[10px] sm:text-xs font-body uppercase font-bold text-[#89AACC]">
+                    <span>View</span>
+                    <ArrowUpRight className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
       </motion.div>
 
-      {/* Lightbox Modal */}
+      {/* POPUP MODAL WINDOW ON CLICK */}
       <AnimatePresence>
         {activeCard && (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
@@ -94,32 +113,50 @@ export const Explorations: React.FC = () => {
               className="fixed inset-0 bg-black/90 backdrop-blur-3xl"
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="relative max-w-xl w-full bg-surface/95 border border-white/25 rounded-3xl overflow-hidden shadow-2xl z-10 p-6 sm:p-10 flex flex-col space-y-6 backdrop-blur-3xl"
+              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 15 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="relative max-w-lg w-full bg-surface/95 border border-white/30 rounded-3xl overflow-hidden shadow-2xl z-10 p-6 sm:p-10 flex flex-col space-y-6 backdrop-blur-3xl"
             >
+              {/* Close Button */}
               <button
                 onClick={() => setActiveCard(null)}
-                className="touch-target absolute top-5 right-5 p-2.5 rounded-full bg-bg border border-white/25 text-white hover:bg-white hover:text-black transition-colors"
-                aria-label="Close Modal"
+                className="touch-target absolute top-5 right-5 p-2.5 rounded-full bg-bg border border-white/25 text-white hover:bg-white hover:text-black transition-colors shadow-lg"
+                aria-label="Close Concept Popup"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <span className="px-3 py-1 rounded-full bg-stroke/90 border border-white/15 text-xs font-body uppercase tracking-wider text-[#89AACC] font-bold w-fit">
-                {activeCard.category}
-              </span>
+              {/* Category Badge */}
+              <div className="flex items-center gap-2">
+                <span className="px-3.5 py-1 rounded-full bg-stroke/90 border border-white/20 text-xs font-body uppercase tracking-wider text-[#89AACC] font-bold">
+                  {activeCard.category}
+                </span>
+              </div>
 
-              <h3 className="text-3xl sm:text-4xl font-display italic text-text-primary">
+              {/* Popup Title */}
+              <h3 className="text-2xl sm:text-4xl font-display italic text-text-primary">
                 {activeCard.title}
               </h3>
 
-              <div className="p-5 rounded-2xl bg-bg/85 border border-white/15 space-y-2">
-                <p className="text-xs sm:text-base text-text-primary leading-relaxed">
+              {/* Full Description & Details inside Popup */}
+              <div className="p-5 rounded-2xl bg-bg/85 border border-white/15 space-y-3">
+                <h4 className="text-xs uppercase tracking-widest text-[#89AACC] font-bold">
+                  Technical Concept Overview
+                </h4>
+                <p className="text-xs sm:text-base text-text-primary leading-relaxed font-normal">
                   {activeCard.description}
                 </p>
               </div>
+
+              {/* Popup Footer Action */}
+              <button
+                onClick={() => setActiveCard(null)}
+                className="w-full py-3 rounded-full accent-gradient text-bg font-body font-bold text-xs sm:text-sm shadow-xl hover:scale-[1.02] transition-transform"
+              >
+                Close Concept Window
+              </button>
             </motion.div>
           </div>
         )}

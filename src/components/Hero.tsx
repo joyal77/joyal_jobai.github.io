@@ -79,10 +79,10 @@ export const Hero: React.FC = () => {
           <span className="font-semibold">{portfolio.title.toUpperCase()}</span>
         </div>
 
-        {/* Main Name Heading — Reduced mobile text (-5 steps) */}
+        {/* Main Name Heading — Plus Jakarta Sans */}
         <h1
           ref={nameRef}
-          className="name-reveal text-4xl sm:text-7xl md:text-[9.5rem] lg:text-[12rem] font-display italic text-text-primary leading-[0.9] tracking-tight mb-4 sm:mb-8 select-none drop-shadow-2xl break-words w-full"
+          className="name-reveal text-4xl sm:text-7xl md:text-[9rem] lg:text-[11.5rem] font-display font-extrabold text-text-primary leading-[0.95] tracking-tight mb-4 sm:mb-8 select-none drop-shadow-2xl break-words w-full"
         >
           {portfolio.name}
         </h1>
@@ -93,7 +93,7 @@ export const Hero: React.FC = () => {
           <div className="h-8 sm:h-14 flex items-center justify-center overflow-hidden mb-4 sm:mb-8 w-full">
             <span
               key={portfolio.roles[currentRoleIndex]}
-              className="text-base sm:text-2xl md:text-4xl lg:text-5xl font-body font-medium text-[#89AACC] tracking-wide animate-role-fade-in drop-shadow text-center truncate px-2"
+              className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-body font-semibold text-[#89AACC] tracking-wide animate-role-fade-in drop-shadow text-center truncate px-2"
             >
               {portfolio.roles[currentRoleIndex]}
             </span>

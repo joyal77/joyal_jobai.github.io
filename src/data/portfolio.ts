@@ -240,49 +240,49 @@ export const portfolio = {
     {
       id: "exp-1",
       title: "Neural Model Architecture",
-      category: "Machine Learning",
+      category: "Deep Learning",
       description: "Visualizing high-dimensional feature embeddings and SHAP explainability matrices for tabular dataset predictions.",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      image: "",
       speed: 0.1
     },
     {
       id: "exp-2",
-      title: "High-Speed FastAPI Pipelines",
-      category: "Backend Systems",
-      description: "Asynchronous Python services handling multi-threaded payload ingestion and low-latency database queries.",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+      title: "XGBoost + SHAP Explainability",
+      category: "AI & Machine Learning",
+      description: "Feature explainability & predictive pipelines executing real-time churn predictions and feature impact scores.",
+      image: "",
       speed: 0.2
     },
     {
       id: "exp-3",
-      title: "Interactive Data Interfaces",
-      category: "Frontend Design",
-      description: "Glassmorphism UI elements, micro-animations, and dynamic visual dashboards rendered in React.",
-      image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+      title: "FastAPI + React Ecosystem",
+      category: "Full-Stack Architecture",
+      description: "Modern REST services & dynamic responsive UIs backed by high-speed Python FastAPI microservices.",
+      image: "",
       speed: 0.15
     },
     {
       id: "exp-4",
-      title: "Enterprise Networking Labs",
-      category: "Infrastructure",
-      description: "Packet inspection, VLAN trunking, and TCP/IP protocol stack analysis in simulated test environments.",
-      image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
+      title: "TCP/IP & Linux Administration",
+      category: "Networking & Systems",
+      description: "Enterprise infrastructure, network routing, packet analysis, DNS/DHCP configuration, and Linux server management.",
+      image: "",
       speed: 0.25
     },
     {
       id: "exp-5",
-      title: "Predictive Analytics",
+      title: "Predictive Analytics Engines",
       category: "Data Science",
-      description: "Time-series forecasting, trend decomposition, and feature engineering with Pandas and NumPy.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      description: "Time-series forecasting, trend decomposition, and automated feature engineering with Pandas and NumPy.",
+      image: "",
       speed: 0.12
     },
     {
       id: "exp-6",
-      title: "Cybersecurity & Linux",
+      title: "Cybersecurity & Socket Labs",
       category: "Systems Security",
-      description: "Linux daemon management, iptables firewall configuration, and socket monitoring utilities.",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+      description: "Linux daemon management, iptables firewall configuration, socket monitoring utilities, and network hardening.",
+      image: "",
       speed: 0.18
     }
   ] as ExplorationCard[],

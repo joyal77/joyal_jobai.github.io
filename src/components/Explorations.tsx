@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, X, Brain, Cpu, Terminal, Network, BarChart2, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Sparkles, X, Brain, Cpu, Terminal, Network, BarChart2, ShieldCheck, ArrowUpRight, Code, Server } from 'lucide-react';
 import { portfolio, ExplorationCard } from '../data/portfolio';
 
 export const Explorations: React.FC = () => {
@@ -55,7 +55,7 @@ export const Explorations: React.FC = () => {
                 </div>
               </div>
               <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
-                Neural, Backend & Cyber Concepts
+                Neural, ML & System Concepts
               </h3>
             </div>
 
@@ -77,7 +77,7 @@ export const Explorations: React.FC = () => {
                   transition={{ duration: 0.35, delay: idx * 0.06 }}
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setActiveCard(exp)}
-                  className="glass-card glass-shimmer group relative p-4 sm:p-7 rounded-2xl cursor-pointer shadow-xl border border-white/20 hover:border-[#89AACC] flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 transition-all"
+                  className="glass-card glass-shimmer group relative p-4 sm:p-7 rounded-2xl cursor-pointer shadow-xl border border-white/20 hover:border-[#89AACC] flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 transition-all min-h-[140px] sm:min-h-[180px]"
                 >
                   {/* Icon */}
                   <div className="w-11 sm:w-16 h-11 sm:h-16 rounded-2xl bg-stroke/80 flex items-center justify-center text-[#89AACC] group-hover:bg-[#4E85BF] group-hover:text-bg transition-colors shadow-md">

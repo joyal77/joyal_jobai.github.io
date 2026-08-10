@@ -1,16 +1,32 @@
-# React + Vite
+# Joyal Jobai — Premium Animated Portfolio Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An interactive, high-performance portfolio website for **Joyal Jobai** (AI/ML & Full-Stack Developer).
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
+- **Framework**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS v4 + Glassmorphism Design System
+- **Animations**: GSAP 3 + ScrollTrigger, Framer Motion
+- **Video Layer**: HLS.js video streaming background
+- **Icons**: Lucide React
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌟 Key Features
+- **Cinematic Dark Theme**: HSL color tokens with ambient gradient lighting.
+- **Interactive Developer Badge**: 3D tilting glassmorphic ID card featuring Joyal's photograph.
+- **Grouped Project Showcase**: Structured AI/ML systems and Enterprise Web platforms with text-only detail modals.
+- **Unified Timeline**: Single combined GSAP scroll timeline for Education and Certifications.
+- **Mobile-First Responsiveness**: 100% responsive across 320px mobile viewports to 4K desktops with full-screen glass drawer navigation.
 
-## React Compiler
+## 🛠️ Local Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the Oxlint configuration
+# Start local dev server
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+# Build production bundle
+npm run build
+```
+
+© 2026 Joyal Jobai. All rights reserved.

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github, CheckCircle2, Cpu, Server } from 'lucide-react';
+import { X, ExternalLink, Github, CheckCircle2, Cpu, Server, ArrowUpRight, AlertCircle } from 'lucide-react';
 import { portfolio, Project } from '../data/portfolio';
-import { ProjectCard } from './ProjectCard';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -17,65 +16,149 @@ export const Projects: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7 }}
-        className="flex flex-col space-y-16 sm:space-y-24"
+        className="flex flex-col space-y-12 sm:space-y-16"
       >
         {/* Section Header */}
         <div className="flex flex-col space-y-3">
           <span className="text-xs sm:text-base uppercase tracking-[0.25em] text-[#89AACC] font-body font-bold">
-            03 / PORTFOLIO
+            03 / PORTFOLIO & SYSTEMS
           </span>
           <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
             Featured <span className="text-[#89AACC]">projects</span>
           </h2>
         </div>
 
-        {/* Group 1: AI & Machine Learning */}
-        <div className="space-y-6">
-          <div className="flex items-center space-x-3 border-b border-white/20 pb-4">
-            <div className="p-2.5 rounded-xl bg-stroke/70 text-[#89AACC]">
-              <Cpu className="w-5 sm:w-6 h-5 sm:h-6" />
-            </div>
-            <div>
-              <h3 className="text-2xl sm:text-4xl font-display italic text-text-primary">
-                AI & Machine Learning
+        {/* Group 1: AI & Machine Learning Systems (SINGLE CONTAINER BOX) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="glass-card glass-shimmer relative w-full rounded-3xl p-6 sm:p-10 md:p-12 border border-white/30 backdrop-blur-3xl shadow-2xl flex flex-col space-y-6 overflow-hidden"
+        >
+          <div className="flex items-center justify-between pb-4 border-b border-white/15 flex-wrap gap-3">
+            <div className="flex items-center space-x-3">
+              <div className="w-9 sm:w-11 h-9 sm:h-11 rounded-2xl accent-gradient p-[2px]">
+                <div className="w-full h-full bg-bg rounded-2xl flex items-center justify-center text-text-primary">
+                  <Cpu className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
+                </div>
+              </div>
+              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
+                AI & Machine Learning Platforms
               </h3>
             </div>
+
+            <span className="px-3.5 py-1.5 rounded-full bg-stroke/90 border border-white/15 text-xs font-body font-bold text-[#89AACC] uppercase tracking-wider">
+              FastAPI • XGBoost • SHAP
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* AI Project Cards inside Single Box */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-2">
             {aiProjects.map((project) => (
-              <ProjectCard
+              <motion.div
                 key={project.id}
-                project={project}
-                onSelect={(p) => setSelectedProject(p)}
-              />
+                layoutId={`project-container-${project.id}`}
+                onClick={() => setSelectedProject(project)}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className={`${project.span} glass-card glass-shimmer group relative rounded-2xl p-5 sm:p-7 flex flex-col justify-between space-y-4 border border-white/20 hover:border-[#89AACC] cursor-pointer shadow-xl`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full bg-stroke/85 text-[11px] sm:text-xs font-body text-[#89AACC] uppercase font-bold tracking-wider">
+                    {project.type}
+                  </span>
+                  <div className="touch-target w-9 h-9 rounded-full bg-stroke/85 flex items-center justify-center text-text-primary group-hover:accent-gradient group-hover:text-bg transition-colors shadow-md">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-[11px] font-body uppercase tracking-widest text-[#89AACC] font-bold block">
+                    {project.subtitle}
+                  </span>
+                  <motion.h4
+                    layoutId={`project-title-${project.id}`}
+                    className="text-xl sm:text-3xl font-display italic text-text-primary group-hover:text-white transition-colors"
+                  >
+                    {project.title}
+                  </motion.h4>
+                </div>
+
+                <div className="flex items-center justify-between pt-2 border-t border-white/15 text-xs font-body uppercase tracking-widest text-[#89AACC] font-bold">
+                  <span>View Case Study</span>
+                  <span>↗</span>
+                </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Group 2: Enterprise Web Systems */}
-        <div className="space-y-6 pt-4">
-          <div className="flex items-center space-x-3 border-b border-white/20 pb-4">
-            <div className="p-2.5 rounded-xl bg-stroke/70 text-[#89AACC]">
-              <Server className="w-5 sm:w-6 h-5 sm:h-6" />
-            </div>
-            <div>
-              <h3 className="text-2xl sm:text-4xl font-display italic text-text-primary">
-                Enterprise & Web Systems
+        {/* Group 2: Enterprise & Web Systems (SINGLE CONTAINER BOX) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="glass-card glass-shimmer relative w-full rounded-3xl p-6 sm:p-10 md:p-12 border border-white/30 backdrop-blur-3xl shadow-2xl flex flex-col space-y-6 overflow-hidden"
+        >
+          <div className="flex items-center justify-between pb-4 border-b border-white/15 flex-wrap gap-3">
+            <div className="flex items-center space-x-3">
+              <div className="w-9 sm:w-11 h-9 sm:h-11 rounded-2xl accent-gradient p-[2px]">
+                <div className="w-full h-full bg-bg rounded-2xl flex items-center justify-center text-text-primary">
+                  <Server className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
+                </div>
+              </div>
+              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
+                Enterprise & Web Platforms
               </h3>
             </div>
+
+            <span className="px-3.5 py-1.5 rounded-full bg-stroke/90 border border-white/15 text-xs font-body font-bold text-[#89AACC] uppercase tracking-wider">
+              Python • PHP • Android • MySQL
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* Web Project Cards inside Single Box */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
             {webProjects.map((project) => (
-              <ProjectCard
+              <motion.div
                 key={project.id}
-                project={project}
-                onSelect={(p) => setSelectedProject(p)}
-              />
+                layoutId={`project-container-${project.id}`}
+                onClick={() => setSelectedProject(project)}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="glass-card glass-shimmer group relative rounded-2xl p-5 sm:p-7 flex flex-col justify-between space-y-4 border border-white/20 hover:border-[#89AACC] cursor-pointer shadow-xl"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full bg-stroke/85 text-[11px] sm:text-xs font-body text-[#89AACC] uppercase font-bold tracking-wider">
+                    {project.type}
+                  </span>
+                  <div className="touch-target w-9 h-9 rounded-full bg-stroke/85 flex items-center justify-center text-text-primary group-hover:accent-gradient group-hover:text-bg transition-colors shadow-md">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-[11px] font-body uppercase tracking-widest text-[#89AACC] font-bold block">
+                    {project.subtitle}
+                  </span>
+                  <motion.h4
+                    layoutId={`project-title-${project.id}`}
+                    className="text-xl sm:text-3xl font-display italic text-text-primary group-hover:text-white transition-colors"
+                  >
+                    {project.title}
+                  </motion.h4>
+                </div>
+
+                <div className="flex items-center justify-between pt-2 border-t border-white/15 text-xs font-body uppercase tracking-widest text-[#89AACC] font-bold">
+                  <span>View Case Study</span>
+                  <span>↗</span>
+                </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Project Detail Modal */}
@@ -102,7 +185,7 @@ export const Projects: React.FC = () => {
               <div className="relative p-6 sm:p-10 border-b border-white/20 bg-gradient-to-r from-surface via-stroke/50 to-surface flex-shrink-0 space-y-3">
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="touch-target absolute top-5 right-5 p-2.5 rounded-full bg-bg/80 border border-white/25 text-white hover:bg-white hover:text-black transition-colors z-20 shadow-xl"
+                  className="touch-target absolute top-5 right-5 p-2.5 rounded-full bg-bg border border-white/25 text-white hover:bg-white hover:text-black transition-colors z-20 shadow-xl"
                   aria-label="Close Project Modal"
                 >
                   <X className="w-5 h-5" />

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github, CheckCircle2, Cpu, Server, ArrowUpRight, AlertCircle } from 'lucide-react';
+import { X, ExternalLink, Github, CheckCircle2, Cpu, Server, ArrowUpRight } from 'lucide-react';
 import { portfolio, Project } from '../data/portfolio';
+import { SectionVideo } from './SectionVideo';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -10,20 +11,26 @@ export const Projects: React.FC = () => {
   const webProjects = portfolio.projects.filter((p) => p.category === 'web');
 
   return (
-    <section id="projects" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <section id="projects" className="relative py-24 sm:py-36 px-4 md:px-8 max-w-7xl mx-auto z-10 my-12 rounded-3xl overflow-hidden">
+      {/* Dedicated Section Video Background */}
+      <SectionVideo
+        src="https://stream.mux.com/DS00S00S02A02102008i4c2i1102900010077V/medium.mp4"
+        overlayClass="bg-black/60 backdrop-blur-sm"
+      />
+
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7 }}
-        className="flex flex-col space-y-12 sm:space-y-16"
+        className="relative z-10 flex flex-col space-y-12 sm:space-y-16"
       >
         {/* Section Header */}
         <div className="flex flex-col space-y-3">
           <span className="text-xs sm:text-base uppercase tracking-[0.25em] text-[#89AACC] font-body font-bold">
             03 / PORTFOLIO & SYSTEMS
           </span>
-          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
+          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-text-primary">
             Featured <span className="text-[#89AACC]">projects</span>
           </h2>
         </div>
@@ -43,7 +50,7 @@ export const Projects: React.FC = () => {
                   <Cpu className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
                 </div>
               </div>
-              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
+              <h3 className="text-xl sm:text-3xl font-display font-bold text-text-primary">
                 AI & Machine Learning Platforms
               </h3>
             </div>
@@ -79,7 +86,7 @@ export const Projects: React.FC = () => {
                   </span>
                   <motion.h4
                     layoutId={`project-title-${project.id}`}
-                    className="text-xl sm:text-3xl font-display italic text-text-primary group-hover:text-white transition-colors"
+                    className="text-xl sm:text-3xl font-display font-bold text-text-primary group-hover:text-white transition-colors"
                   >
                     {project.title}
                   </motion.h4>
@@ -109,7 +116,7 @@ export const Projects: React.FC = () => {
                   <Server className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
                 </div>
               </div>
-              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
+              <h3 className="text-xl sm:text-3xl font-display font-bold text-text-primary">
                 Enterprise & Web Platforms
               </h3>
             </div>
@@ -145,7 +152,7 @@ export const Projects: React.FC = () => {
                   </span>
                   <motion.h4
                     layoutId={`project-title-${project.id}`}
-                    className="text-xl sm:text-3xl font-display italic text-text-primary group-hover:text-white transition-colors"
+                    className="text-xl sm:text-3xl font-display font-bold text-text-primary group-hover:text-white transition-colors"
                   >
                     {project.title}
                   </motion.h4>
@@ -202,7 +209,7 @@ export const Projects: React.FC = () => {
 
                 <motion.h3
                   layoutId={`project-title-${selectedProject.id}`}
-                  className="text-3xl sm:text-5xl font-display italic text-text-primary"
+                  className="text-3xl sm:text-5xl font-display font-bold text-text-primary"
                 >
                   {selectedProject.title}
                 </motion.h3>

@@ -134,7 +134,7 @@ export const portfolio = {
         "What-if operational scenario parameters"
       ],
       githubUrl: "https://github.com/joyal77",
-      liveUrl: "https://joyal_jobai.github.io/"
+      liveUrl: "https://joyal-jobai.vercel.app/"
     },
     {
       id: "logistics-management",

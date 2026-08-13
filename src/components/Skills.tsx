@@ -1,75 +1,78 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Code2, Layout, Server, Brain, Database, Network } from 'lucide-react';
 import { portfolio } from '../data/portfolio';
-import { SectionVideo } from './SectionVideo';
-
-type SkillTab = 'all' | 'languages' | 'frontend' | 'backend' | 'aiMl' | 'databases' | 'networkingSystems';
+import { Code, Terminal, Cpu, Database, Network, Wrench, Sparkles } from 'lucide-react';
 
 export const Skills: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<SkillTab>('all');
+  const [activeCategory, setActiveCategory] = useState<string>('all');
 
-  const tabs = [
-    { id: 'all', label: 'All Skills', icon: Sparkles },
-    { id: 'languages', label: 'Languages', icon: Code2 },
-    { id: 'frontend', label: 'Frontend', icon: Layout },
-    { id: 'backend', label: 'Backend', icon: Server },
-    { id: 'aiMl', label: 'AI & ML', icon: Brain },
+  const categories = [
+    { id: 'all', label: 'All Skills', icon: Wrench },
+    { id: 'languages', label: 'Languages', icon: Code },
+    { id: 'frontend', label: 'Frontend', icon: Terminal },
+    { id: 'backend', label: 'Backend & APIs', icon: Cpu },
+    { id: 'aiMl', label: 'AI & ML', icon: Cpu },
     { id: 'databases', label: 'Databases', icon: Database },
-    { id: 'networkingSystems', label: 'Systems & Networks', icon: Network },
+    { id: 'networkingSystems', label: 'Networking', icon: Network },
   ];
 
-  const getFilteredSkills = () => {
-    if (activeTab === 'all') {
-      return [
-        ...portfolio.skills.languages.map((s) => ({ ...s, cat: 'Languages' })),
-        ...portfolio.skills.frontend.map((s) => ({ ...s, cat: 'Frontend' })),
-        ...portfolio.skills.backend.map((s) => ({ ...s, cat: 'Backend' })),
-        ...portfolio.skills.aiMl.map((s) => ({ ...s, cat: 'AI & ML' })),
-        ...portfolio.skills.databases.map((s) => ({ ...s, cat: 'Databases' })),
-        ...portfolio.skills.networkingSystems.map((s) => ({ ...s, cat: 'Systems & Networks' })),
-      ];
-    }
-    const catMap: Record<string, string> = {
-      languages: 'Languages',
-      frontend: 'Frontend',
-      backend: 'Backend',
-      aiMl: 'AI & ML',
-      databases: 'Databases',
-      networkingSystems: 'Systems & Networks',
-    };
-    const key = activeTab as keyof typeof portfolio.skills;
-    return portfolio.skills[key].map((s) => ({ ...s, cat: catMap[activeTab] }));
-  };
+  const skillGroups = [
+    { category: 'languages', title: 'Languages', items: portfolio.skills.languages },
+    { category: 'frontend', title: 'Frontend', items: portfolio.skills.frontend },
+    { category: 'backend', title: 'Backend & APIs', items: portfolio.skills.backend },
+    { category: 'aiMl', title: 'AI & Machine Learning', items: portfolio.skills.aiMl },
+    { category: 'databases', title: 'Databases', items: portfolio.skills.databases },
+    { category: 'networkingSystems', title: 'Networking & Systems', items: portfolio.skills.networkingSystems },
+  ];
 
-  const currentSkills = getFilteredSkills();
+  const filteredGroups = activeCategory === 'all'
+    ? skillGroups
+    : skillGroups.filter((g) => g.category === activeCategory);
+
+  const totalSkillsCount = skillGroups.reduce((acc, curr) => acc + curr.items.length, 0);
 
   return (
-    <section id="skills" className="relative py-24 sm:py-36 px-4 md:px-8 max-w-7xl mx-auto z-10 my-12 rounded-3xl overflow-hidden">
-      {/* Dedicated Section Video Background */}
-      <SectionVideo
-        src="https://stream.mux.com/v69Af0068a00B929y29v9A61e9A00Z9y2y9/medium.mp4"
-        overlayClass="bg-black/60 backdrop-blur-sm"
-      />
-
+    <section id="skills" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7 }}
-        className="relative z-10 flex flex-col space-y-12 sm:space-y-16"
+        className="flex flex-col space-y-10 sm:space-y-14"
       >
         {/* Section Header */}
         <div className="flex flex-col space-y-3">
           <span className="text-xs sm:text-base uppercase tracking-[0.25em] text-[#89AACC] font-body font-bold">
-            02 / CORE CAPABILITIES
+            02 / TECH STACK & CAPABILITIES
           </span>
-          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-text-primary">
+          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
             Technical <span className="text-[#89AACC]">skills</span>
           </h2>
         </div>
 
-        {/* SINGLE COMBINED GLASSMORPHIC BOX */}
+        {/* Filter Category Tabs */}
+        <div className="flex flex-wrap gap-2 sm:gap-3 pb-1 overflow-x-auto no-scrollbar">
+          {categories.map((cat) => {
+            const Icon = cat.icon;
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`glass-shimmer flex items-center space-x-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-body tracking-wide font-bold transition-all duration-300 ${
+                  isActive
+                    ? 'bg-text-primary text-bg font-bold shadow-xl scale-105'
+                    : 'bg-surface/85 border border-white/20 text-text-primary/80 hover:text-text-primary'
+                }`}
+              >
+                <Icon className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* SINGLE COMBINED SKILLS BOX */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -82,58 +85,42 @@ export const Skills: React.FC = () => {
             <div className="flex items-center space-x-3">
               <div className="w-9 sm:w-11 h-9 sm:h-11 rounded-2xl accent-gradient p-[2px]">
                 <div className="w-full h-full bg-bg rounded-2xl flex items-center justify-center text-text-primary">
-                  <Code2 className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
+                  <Sparkles className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
                 </div>
               </div>
-              <h3 className="text-xl sm:text-3xl font-display font-bold text-text-primary">
+              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
                 Technical Stack & Tooling
               </h3>
             </div>
 
             <span className="px-3.5 py-1.5 rounded-full bg-stroke/90 border border-white/15 text-xs font-body font-bold text-[#89AACC] uppercase tracking-wider">
-              {currentSkills.length} Technologies
+              {activeCategory === 'all' ? `${totalSkillsCount} Core Skills` : `${filteredGroups.reduce((acc, curr) => acc + curr.items.length, 0)} Skills`}
             </span>
           </div>
 
-          {/* Interactive Category Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none flex-wrap">
-            {tabs.map((tab) => {
-              const TabIcon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as SkillTab)}
-                  className={`touch-target px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-body font-bold transition-all flex items-center gap-2 border ${
-                    isActive
-                      ? 'bg-text-primary text-bg border-white shadow-xl scale-105'
-                      : 'bg-stroke/70 text-text-primary/80 border-white/15 hover:bg-stroke hover:text-white'
-                  }`}
-                >
-                  <TabIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
-          </div>
+          {/* Combined Skills Items Container */}
+          <div className="space-y-8">
+            {filteredGroups.map((group) => (
+              <div key={group.category} className="space-y-3">
+                <div className="flex items-center space-x-2 text-xs sm:text-sm font-body uppercase tracking-widest text-[#89AACC] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-[#89AACC]" />
+                  <span>{group.title}</span>
+                </div>
 
-          {/* Grid of Skill Pills inside Single Box */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 pt-2">
-            {currentSkills.map((skill, index) => (
-              <motion.div
-                key={`${skill.name}-${index}`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.25, delay: index * 0.02 }}
-                className="px-4 py-3 sm:px-5 sm:py-4 rounded-2xl bg-bg/85 border border-white/20 hover:border-[#89AACC] transition-all flex flex-col items-center justify-center text-center space-y-1 group shadow-md"
-              >
-                <span className="text-xs font-body uppercase font-bold text-[#89AACC] tracking-wider opacity-80">
-                  {skill.cat}
-                </span>
-                <span className="text-sm sm:text-base font-body font-bold text-text-primary group-hover:text-white transition-colors">
-                  {skill.name}
-                </span>
-              </motion.div>
+                <div className="flex flex-wrap gap-2.5">
+                  {group.items.map((skill) => (
+                    <motion.div
+                      key={skill.name}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      className="glass-shimmer group relative px-3.5 sm:px-4 py-2 rounded-xl bg-stroke/70 border border-white/15 text-xs sm:text-base font-body font-semibold text-text-primary hover:border-[#89AACC] hover:shadow-xl transition-all cursor-default flex items-center space-x-2"
+                    >
+                      <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-stroke group-hover:bg-[#89AACC] transition-colors" />
+                      <span>{skill.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </motion.div>

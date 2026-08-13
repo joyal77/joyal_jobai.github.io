@@ -1,150 +1,138 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Check } from 'lucide-react';
+import React, { useRef, useState, useEffect } from 'react';
+import gsap from 'gsap';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { portfolio } from '../data/portfolio';
 
 export const Hero: React.FC = () => {
-  const [showEmailForm, setShowEmailForm] = useState(false);
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [placeholderText, setPlaceholderText] = useState('');
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const nameRef = useRef<HTMLHeadingElement | null>(null);
+  const elementsRef = useRef<HTMLDivElement | null>(null);
 
-  const targetText = isSubmitted
-    ? 'You Will Receive Notifications By Email'
-    : 'Enter Your Email Here For Early Access';
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
 
-  // Typewriter effect when email form opens or submission status changes
+  // Dynamic Role Cycler
   useEffect(() => {
-    if (!showEmailForm) {
-      setPlaceholderText('');
-      return;
-    }
+    const roleInterval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % portfolio.roles.length);
+    }, 2500);
 
-    setPlaceholderText('');
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < targetText.length) {
-        setPlaceholderText((prev) => targetText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(interval);
+    return () => clearInterval(roleInterval);
+  }, []);
+
+  // GSAP Entrance
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const isMobile = window.innerWidth < 768;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      if (nameRef.current) {
+        tl.fromTo(
+          nameRef.current,
+          { opacity: 0, y: isMobile ? 15 : 30 },
+          { opacity: 1, y: 0, duration: 0.5 }
+        );
       }
-    }, 60);
 
-    return () => clearInterval(interval);
-  }, [showEmailForm, targetText]);
+      if (elementsRef.current) {
+        const children = elementsRef.current.children;
+        tl.fromTo(
+          children,
+          { opacity: 0, y: isMobile ? 10 : 15 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.06 },
+          '-=0.3'
+        );
+      }
+    }, heroRef);
 
-  // Auto reset to button state after 4 seconds of submission
-  useEffect(() => {
-    if (isSubmitted) {
-      const timer = setTimeout(() => {
-        setIsSubmitted(false);
-        setShowEmailForm(false);
-        setEmail('');
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [isSubmitted]);
+    return () => ctx.revert();
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim() && !isSubmitted) {
-      setIsSubmitted(true);
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth',
+      });
     }
   };
 
   return (
-    <section className="relative flex-1 flex flex-col items-center justify-center px-6">
-      {/* Content Wrapper */}
-      <div className="relative z-10 text-center max-w-5xl mx-auto flex flex-col items-center justify-center w-full gap-12">
-        <div>
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-white/80 text-[10px] md:text-[11px] font-medium tracking-[0.2em] uppercase mb-4"
-          >
-            BUILD A NO-CODE AI APP IN MINUTES
-          </motion.p>
-
-          {/* Heading with Instrument Serif font */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-            className="text-4xl md:text-[64px] font-medium tracking-[-0.01em] leading-[1.1] mb-6 bg-gradient-to-b from-white via-white/95 to-white/70 bg-clip-text text-transparent max-w-4xl"
-          >
-            A new way to think and create <br className="hidden md:block" />
-            with computers
-          </motion.h1>
+    <section
+      id="home"
+      ref={heroRef}
+      className="relative min-h-[85vh] sm:min-h-screen w-full flex flex-col items-center justify-center pt-20 sm:pt-32 pb-12 sm:pb-24 px-4 overflow-hidden z-10"
+    >
+      {/* Main Hero Container */}
+      <div className="relative z-10 max-w-7xl mx-auto text-center flex flex-col items-center w-full">
+        {/* Minimal Category Tag */}
+        <div className="glass-shimmer inline-flex items-center gap-2 px-3.5 sm:px-6 py-1.5 sm:py-3 rounded-full border border-white/20 bg-surface/80 backdrop-blur-2xl text-[11px] sm:text-base font-body uppercase tracking-[0.2em] text-[#89AACC] mb-4 sm:mb-8 shadow-xl">
+          <Sparkles className="w-3 sm:w-5 h-3 sm:h-5 text-[#89AACC]" />
+          <span className="font-semibold">{portfolio.title.toUpperCase()}</span>
         </div>
 
-        {/* CTA Area with AnimatePresence */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="min-h-[50px] mt-2 flex items-center justify-center"
+        {/* Main Name Heading — Plus Jakarta Sans */}
+        <h1
+          ref={nameRef}
+          className="name-reveal text-4xl sm:text-7xl md:text-[9rem] lg:text-[11.5rem] font-display font-extrabold text-text-primary leading-[0.95] tracking-tight mb-4 sm:mb-8 select-none drop-shadow-2xl break-words w-full"
         >
-          <AnimatePresence mode="wait">
-            {!showEmailForm ? (
-              <motion.button
-                key="access-button"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                onClick={() => setShowEmailForm(true)}
-                className="px-10 py-3 text-[14px] font-medium border border-white/10 rounded-full hover:border-white/30 hover:bg-white/[0.02] transition-all duration-300 text-white/90 backdrop-blur-sm cursor-pointer"
-              >
-                Get early access
-              </motion.button>
-            ) : (
-              <motion.form
-                key="email-form"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                onSubmit={handleSubmit}
-                className="flex items-center gap-2 pl-5 pr-1.5 py-1.5 text-[14px] font-medium border border-white/20 rounded-full bg-white/[0.02] backdrop-blur-sm w-full max-w-[320px] focus-within:border-white/40 transition-colors duration-300"
-              >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={placeholderText}
-                  disabled={isSubmitted}
-                  autoFocus
-                  required
-                  className="bg-transparent text-white placeholder-white/45 outline-none w-full text-xs sm:text-sm"
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitted}
-                  className="p-2 rounded-full bg-white text-black hover:bg-white/90 transition-all flex items-center justify-center shrink-0 cursor-pointer"
-                >
-                  {isSubmitted ? (
-                    <Check className="w-4 h-4 text-emerald-600" />
-                  ) : (
-                    <ArrowRight className="w-4 h-4" />
-                  )}
-                </button>
-              </motion.form>
-            )}
-          </AnimatePresence>
-        </motion.div>
+          {portfolio.name}
+        </h1>
 
-        {/* Play Video Demo Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="text-white/80 hover:text-white/40 transition-colors duration-300 text-[13px] font-medium tracking-wide cursor-pointer"
-        >
-          Play Video Demo
-        </motion.div>
+        {/* Staggered Elements */}
+        <div ref={elementsRef} className="flex flex-col items-center w-full">
+          {/* Role Cycler */}
+          <div className="h-8 sm:h-14 flex items-center justify-center overflow-hidden mb-4 sm:mb-8 w-full">
+            <span
+              key={portfolio.roles[currentRoleIndex]}
+              className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-body font-semibold text-[#89AACC] tracking-wide animate-role-fade-in drop-shadow text-center truncate px-2"
+            >
+              {portfolio.roles[currentRoleIndex]}
+            </span>
+          </div>
+
+          {/* Concise Subheading */}
+          <p className="text-sm sm:text-lg md:text-2xl lg:text-3xl text-text-primary/90 max-w-md sm:max-w-3xl leading-relaxed mb-6 sm:mb-12 font-body font-normal drop-shadow px-2">
+            Building intelligent AI models & enterprise web applications.
+          </p>
+
+          {/* Compact CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-xs sm:max-w-none px-4">
+            <button
+              onClick={() => scrollTo('projects')}
+              className="glass-shimmer touch-target group relative flex items-center justify-center gap-2 bg-text-primary text-bg font-body font-bold text-sm sm:text-base lg:text-xl px-6 sm:px-9 py-3 sm:py-4 rounded-full hover:scale-105 transition-all duration-300 shadow-2xl shadow-white/20 w-full sm:w-auto"
+            >
+              <span>View Projects</span>
+              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </button>
+
+            <button
+              onClick={() => scrollTo('contact')}
+              className="glass-shimmer touch-target group relative flex items-center justify-center gap-2 border border-white/25 bg-surface/85 backdrop-blur-2xl text-text-primary font-body font-bold text-sm sm:text-base lg:text-xl px-6 sm:px-9 py-3 sm:py-4 rounded-full hover:border-[#4E85BF] hover:scale-105 transition-all duration-300 shadow-xl w-full sm:w-auto"
+            >
+              <span>Contact</span>
+              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-muted group-hover:text-text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex-col items-center space-y-2 pointer-events-none">
+        <span className="text-xs text-text-primary/80 uppercase tracking-[0.2em] font-body font-semibold">
+          SCROLL
+        </span>
+        <div className="relative w-0.5 h-8 bg-stroke overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1/2 accent-gradient animate-scroll-down" />
+        </div>
       </div>
     </section>
   );

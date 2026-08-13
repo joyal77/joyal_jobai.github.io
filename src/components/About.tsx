@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Brain, Code2, Server, Network } from 'lucide-react';
 import { portfolio } from '../data/portfolio';
 import { DeveloperBadge } from './DeveloperBadge';
-import { SectionVideo } from './SectionVideo';
 
 export const About: React.FC = () => {
   const pillars = [
@@ -30,26 +29,20 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="relative py-24 sm:py-36 px-4 md:px-8 max-w-7xl mx-auto z-10 my-12 rounded-3xl overflow-hidden">
-      {/* Dedicated Section Video Background */}
-      <SectionVideo
-        src="https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/medium.mp4"
-        overlayClass="bg-black/55 backdrop-blur-sm"
-      />
-
+    <section id="about" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 flex flex-col space-y-16 sm:space-y-24"
+        className="flex flex-col space-y-16 sm:space-y-24"
       >
         {/* Section Header */}
         <div className="flex flex-col space-y-3">
           <span className="text-xs sm:text-base uppercase tracking-[0.25em] text-[#89AACC] font-body font-bold">
             01 / BIOGRAPHY
           </span>
-          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-text-primary">
+          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
             About <span className="text-[#89AACC]">Joyal</span>
           </h2>
         </div>
@@ -58,7 +51,7 @@ export const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Left Column — Concise Bio */}
           <div className="lg:col-span-7 flex flex-col space-y-6">
-            <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary leading-tight">
+            <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
               "{portfolio.editorialStatement}"
             </h3>
 

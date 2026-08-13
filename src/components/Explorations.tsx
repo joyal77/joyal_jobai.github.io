@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, X, Brain, Cpu, Terminal, Network, BarChart2, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Sparkles, X, Brain, Cpu, Terminal, Network, BarChart2, ShieldCheck, ArrowUpRight, Code, Server } from 'lucide-react';
 import { portfolio, ExplorationCard } from '../data/portfolio';
-import { SectionVideo } from './SectionVideo';
 
 export const Explorations: React.FC = () => {
   const [activeCard, setActiveCard] = useState<ExplorationCard | null>(null);
@@ -17,19 +16,13 @@ export const Explorations: React.FC = () => {
   };
 
   return (
-    <section id="explorations" className="relative py-24 sm:py-36 px-4 md:px-8 max-w-7xl mx-auto z-10 my-12 rounded-3xl overflow-hidden">
-      {/* Dedicated Section Video Background */}
-      <SectionVideo
-        src="https://cdn.coverr.co/videos/coverr-abstract-blue-particles-motion-5164/1080p.mp4"
-        overlayClass="bg-black/60 backdrop-blur-sm"
-      />
-
+    <section id="explorations" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7 }}
-        className="relative z-10 flex flex-col space-y-10 sm:space-y-14"
+        className="flex flex-col space-y-10 sm:space-y-14"
       >
         {/* Section Header with Description */}
         <div className="flex flex-col space-y-4">
@@ -37,7 +30,7 @@ export const Explorations: React.FC = () => {
             <Sparkles className="w-4 h-4 text-[#89AACC]" />
             <span>06 / EXPERIMENTAL LAB</span>
           </div>
-          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-text-primary">
+          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
             Visual <span className="text-[#89AACC]">playground</span>
           </h2>
           <p className="text-text-primary/90 text-sm sm:text-xl lg:text-2xl font-body max-w-3xl leading-relaxed">
@@ -61,7 +54,7 @@ export const Explorations: React.FC = () => {
                   <Brain className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
                 </div>
               </div>
-              <h3 className="text-xl sm:text-3xl font-display font-bold text-text-primary">
+              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
                 Neural, ML & System Concepts
               </h3>
             </div>
@@ -92,7 +85,7 @@ export const Explorations: React.FC = () => {
                   </div>
 
                   {/* Title Only */}
-                  <h4 className="text-xs sm:text-lg font-display font-bold text-text-primary group-hover:text-white transition-colors leading-snug">
+                  <h4 className="text-xs sm:text-lg font-display italic text-text-primary group-hover:text-white transition-colors leading-snug">
                     {exp.title}
                   </h4>
 
@@ -143,7 +136,7 @@ export const Explorations: React.FC = () => {
               </div>
 
               {/* Popup Title */}
-              <h3 className="text-2xl sm:text-4xl font-display font-bold text-text-primary">
+              <h3 className="text-2xl sm:text-4xl font-display italic text-text-primary">
                 {activeCard.title}
               </h3>
 

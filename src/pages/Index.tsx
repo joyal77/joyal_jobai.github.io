@@ -6,7 +6,6 @@ import { Skills } from '../components/Skills';
 import { Projects } from '../components/Projects';
 import { Experience } from '../components/Experience';
 import { Explorations } from '../components/Explorations';
-import { Stats } from '../components/Stats';
 import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 import { HLSVideo } from '../components/HLSVideo';
@@ -35,7 +34,6 @@ export const Index: React.FC = () => {
         <Projects />
         <Experience />
         <Explorations />
-        <Stats />
         <Contact />
         <Footer />
       </div>

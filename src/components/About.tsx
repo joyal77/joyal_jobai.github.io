@@ -29,12 +29,13 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <section id="about" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10 overflow-hidden">
+      {/* Motion Graphics: Slide in from LEFT on Scroll */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0, x: -120 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col space-y-16 sm:space-y-24"
       >
         {/* Section Header */}
@@ -42,7 +43,7 @@ export const About: React.FC = () => {
           <span className="text-xs sm:text-base uppercase tracking-[0.25em] text-[#89AACC] font-body font-bold">
             01 / BIOGRAPHY
           </span>
-          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
+          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-text-primary">
             About <span className="text-[#89AACC]">Joyal</span>
           </h2>
         </div>
@@ -51,7 +52,7 @@ export const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Left Column — Concise Bio */}
           <div className="lg:col-span-7 flex flex-col space-y-6">
-            <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+            <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary leading-tight">
               "{portfolio.editorialStatement}"
             </h3>
 
@@ -78,10 +79,10 @@ export const About: React.FC = () => {
             return (
               <motion.div
                 key={pillar.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="glass-card glass-shimmer p-6 sm:p-8 rounded-3xl flex flex-col justify-between space-y-4 shadow-xl"
               >
                 <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-2xl bg-stroke/70 flex items-center justify-center text-[#89AACC]">

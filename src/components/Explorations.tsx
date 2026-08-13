@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, X, Brain, Cpu, Terminal, Network, BarChart2, ShieldCheck, ArrowUpRight, Code, Server } from 'lucide-react';
+import { Sparkles, X, Brain, Cpu, Terminal, Network, BarChart2, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { portfolio, ExplorationCard } from '../data/portfolio';
 
 export const Explorations: React.FC = () => {
@@ -16,12 +16,13 @@ export const Explorations: React.FC = () => {
   };
 
   return (
-    <section id="explorations" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <section id="explorations" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10 overflow-hidden">
+      {/* Motion Graphics: Slide in from LEFT on Scroll */}
       <motion.div
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.7 }}
+        initial={{ opacity: 0, x: -120 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col space-y-10 sm:space-y-14"
       >
         {/* Section Header with Description */}
@@ -30,7 +31,7 @@ export const Explorations: React.FC = () => {
             <Sparkles className="w-4 h-4 text-[#89AACC]" />
             <span>06 / EXPERIMENTAL LAB</span>
           </div>
-          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary">
+          <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-text-primary">
             Visual <span className="text-[#89AACC]">playground</span>
           </h2>
           <p className="text-text-primary/90 text-sm sm:text-xl lg:text-2xl font-body max-w-3xl leading-relaxed">
@@ -40,10 +41,10 @@ export const Explorations: React.FC = () => {
 
         {/* SINGLE GLASSMORPHIC CONTAINER BOX */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.96, x: -60 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="glass-card glass-shimmer relative w-full rounded-3xl p-6 sm:p-10 md:p-12 border border-white/30 backdrop-blur-3xl shadow-2xl flex flex-col space-y-8 overflow-hidden"
         >
           {/* Header Bar inside Single Box */}
@@ -54,7 +55,7 @@ export const Explorations: React.FC = () => {
                   <Brain className="w-4 sm:w-5 h-4 sm:h-5 text-[#89AACC]" />
                 </div>
               </div>
-              <h3 className="text-xl sm:text-3xl font-display italic text-text-primary">
+              <h3 className="text-xl sm:text-3xl font-display font-bold text-text-primary">
                 Neural, ML & System Concepts
               </h3>
             </div>
@@ -71,8 +72,8 @@ export const Explorations: React.FC = () => {
               return (
                 <motion.div
                   key={exp.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: idx * 0.06 }}
                   whileHover={{ scale: 1.05 }}
@@ -85,7 +86,7 @@ export const Explorations: React.FC = () => {
                   </div>
 
                   {/* Title Only */}
-                  <h4 className="text-xs sm:text-lg font-display italic text-text-primary group-hover:text-white transition-colors leading-snug">
+                  <h4 className="text-xs sm:text-lg font-display font-bold text-text-primary group-hover:text-white transition-colors leading-snug">
                     {exp.title}
                   </h4>
 
@@ -136,7 +137,7 @@ export const Explorations: React.FC = () => {
               </div>
 
               {/* Popup Title */}
-              <h3 className="text-2xl sm:text-4xl font-display italic text-text-primary">
+              <h3 className="text-2xl sm:text-4xl font-display font-bold text-text-primary">
                 {activeCard.title}
               </h3>
 

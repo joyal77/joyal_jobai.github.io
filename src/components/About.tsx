@@ -30,12 +30,12 @@ export const About: React.FC = () => {
 
   return (
     <section id="about" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10 overflow-hidden">
-      {/* Motion Graphics: Slide in from LEFT on Scroll */}
+      {/* PURE HORIZONTAL SLIDE FROM LEFT */}
       <motion.div
-        initial={{ opacity: 0, x: -120 }}
+        initial={{ opacity: 0, x: -350 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col space-y-16 sm:space-y-24"
       >
         {/* Section Header */}
@@ -79,10 +79,10 @@ export const About: React.FC = () => {
             return (
               <motion.div
                 key={pillar.title}
-                initial={{ opacity: 0, x: -40 }}
+                initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.55, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="glass-card glass-shimmer p-6 sm:p-8 rounded-3xl flex flex-col justify-between space-y-4 shadow-xl"
               >
                 <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-2xl bg-stroke/70 flex items-center justify-center text-[#89AACC]">

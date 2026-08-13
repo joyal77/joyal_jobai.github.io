@@ -6,12 +6,12 @@ import { portfolio } from '../data/portfolio';
 export const Experience: React.FC = () => {
   return (
     <section id="experience" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10 overflow-hidden">
-      {/* Motion Graphics: Slide in from RIGHT on Scroll */}
+      {/* PURE HORIZONTAL SLIDE FROM RIGHT */}
       <motion.div
-        initial={{ opacity: 0, x: 120 }}
+        initial={{ opacity: 0, x: 350 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col space-y-12 sm:space-y-16"
       >
         {/* Section Header */}
@@ -29,10 +29,10 @@ export const Experience: React.FC = () => {
           {portfolio.education.map((edu, idx) => (
             <motion.div
               key={edu.id}
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="relative group"
             >
               {/* Timeline Dot */}
@@ -70,10 +70,10 @@ export const Experience: React.FC = () => {
 
         {/* SINGLE COMBINED CERTIFICATIONS BOX */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, x: 60 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          initial={{ opacity: 0, x: 150 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="glass-card glass-shimmer relative w-full rounded-3xl p-6 sm:p-10 md:p-12 border border-white/30 backdrop-blur-3xl shadow-2xl flex flex-col space-y-6 overflow-hidden mt-8"
         >
           <div className="flex items-center justify-between pb-4 border-b border-white/15 flex-wrap gap-3">

@@ -45,12 +45,12 @@ export const Skills: React.FC = () => {
 
   return (
     <section id="skills" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10 overflow-hidden">
-      {/* Motion Graphics: Slide in from RIGHT on Scroll */}
+      {/* PURE HORIZONTAL SLIDE FROM RIGHT */}
       <motion.div
-        initial={{ opacity: 0, x: 120 }}
+        initial={{ opacity: 0, x: 350 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col space-y-12 sm:space-y-16"
       >
         {/* Section Header */}
@@ -65,10 +65,10 @@ export const Skills: React.FC = () => {
 
         {/* SINGLE COMBINED GLASSMORPHIC BOX */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, x: 60 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          initial={{ opacity: 0, x: 150 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="glass-card glass-shimmer relative w-full rounded-3xl p-6 sm:p-10 md:p-12 border border-white/30 backdrop-blur-3xl shadow-2xl flex flex-col space-y-8 overflow-hidden"
         >
           {/* Header Bar inside Single Box */}
@@ -116,7 +116,7 @@ export const Skills: React.FC = () => {
             {currentSkills.map((skill, index) => (
               <motion.div
                 key={`${skill.name}-${index}`}
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.25, delay: index * 0.02 }}
                 className="px-4 py-3 sm:px-5 sm:py-4 rounded-2xl bg-bg/85 border border-white/20 hover:border-[#89AACC] transition-all flex flex-col items-center justify-center text-center space-y-1 group shadow-md"

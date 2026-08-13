@@ -17,12 +17,12 @@ export const Explorations: React.FC = () => {
 
   return (
     <section id="explorations" className="py-20 sm:py-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10 overflow-hidden">
-      {/* Motion Graphics: Slide in from LEFT on Scroll */}
+      {/* PURE HORIZONTAL SLIDE FROM LEFT */}
       <motion.div
-        initial={{ opacity: 0, x: -120 }}
+        initial={{ opacity: 0, x: -350 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col space-y-10 sm:space-y-14"
       >
         {/* Section Header with Description */}
@@ -41,10 +41,10 @@ export const Explorations: React.FC = () => {
 
         {/* SINGLE GLASSMORPHIC CONTAINER BOX */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, x: -60 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          initial={{ opacity: 0, x: -150 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="glass-card glass-shimmer relative w-full rounded-3xl p-6 sm:p-10 md:p-12 border border-white/30 backdrop-blur-3xl shadow-2xl flex flex-col space-y-8 overflow-hidden"
         >
           {/* Header Bar inside Single Box */}
@@ -72,10 +72,10 @@ export const Explorations: React.FC = () => {
               return (
                 <motion.div
                   key={exp.id}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -80 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: idx * 0.06 }}
+                  transition={{ duration: 0.35, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setActiveCard(exp)}
                   className="glass-card glass-shimmer group relative p-4 sm:p-7 rounded-2xl cursor-pointer shadow-xl border border-white/20 hover:border-[#89AACC] flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 transition-all min-h-[140px] sm:min-h-[180px]"

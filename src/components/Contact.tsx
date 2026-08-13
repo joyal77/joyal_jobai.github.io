@@ -9,18 +9,18 @@ export const Contact: React.FC = () => {
       id="contact"
       className="relative min-h-[75vh] sm:min-h-screen w-full flex flex-col justify-center items-center py-20 sm:py-32 px-4 md:px-8 overflow-hidden z-10"
     >
-      {/* Motion Graphics: Slide in from RIGHT on Scroll */}
+      {/* PURE HORIZONTAL SLIDE FROM RIGHT */}
       <motion.div
-        initial={{ opacity: 0, x: 120 }}
+        initial={{ opacity: 0, x: 350 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 max-w-5xl mx-auto w-full text-center flex flex-col items-center space-y-8 sm:space-y-12"
       >
         <div className="flex flex-col items-center space-y-4 w-full">
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="text-xs sm:text-base uppercase tracking-[0.25em] text-[#89AACC] font-body font-bold"
@@ -30,8 +30,8 @@ export const Contact: React.FC = () => {
 
           {/* UNIQUE CINEMATIC LENS ZOOM-IN ANIMATION */}
           <motion.h2
-            initial={{ opacity: 0, scale: 0.65, filter: 'blur(12px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, scale: 0.65, filter: 'blur(12px)', x: 100 }}
+            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', x: 0 }}
             viewport={{ once: false, margin: '-50px' }}
             transition={{
               duration: 0.9,
@@ -43,8 +43,8 @@ export const Contact: React.FC = () => {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-text-primary/90 text-xs sm:text-xl lg:text-2xl max-w-xl font-body leading-relaxed px-2"
@@ -56,7 +56,7 @@ export const Contact: React.FC = () => {
         {/* Main CTA Mailto Button */}
         <motion.a
           href={`mailto:${portfolio.social.email}`}
-          initial={{ opacity: 0, scale: 0.9, x: 40 }}
+          initial={{ opacity: 0, scale: 0.9, x: 100 }}
           whileInView={{ opacity: 1, scale: 1, x: 0 }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.05 }}
@@ -70,7 +70,7 @@ export const Contact: React.FC = () => {
 
         {/* Contact Links Grid */}
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
+          initial={{ opacity: 0, x: 150 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.4 }}

@@ -14,10 +14,10 @@ import { HLSVideo } from '../components/HLSVideo';
 export const Index: React.FC = () => {
   return (
     <main className="relative min-h-screen bg-bg text-text-primary overflow-x-hidden selection:bg-[#4E85BF] selection:text-white">
-      {/* Fixed Full-Screen HLS Background Video Animation */}
+      {/* Fixed Full-Screen Background Video Animation (Option 2 Approved) */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <HLSVideo
-          overlayClass="bg-black/55"
+          overlayClass="bg-black/50"
           showBottomGradient={false}
           className="fixed inset-0"
         />
